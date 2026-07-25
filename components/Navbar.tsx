@@ -39,7 +39,6 @@ export default function Navbar() {
       ">
 
 
-
         {/* Logo */}
 
         <Link href="/">
@@ -110,8 +109,9 @@ export default function Navbar() {
 
 
 
+
           <Link
-            href="/admin"
+            href="/login"
             className="
               px-5
               py-2
@@ -123,7 +123,29 @@ export default function Navbar() {
               transition
             "
           >
-            Admin
+            🔐 Login
+          </Link>
+
+
+
+
+
+          <Link
+            href="/admin"
+            className="
+              px-5
+              py-2
+              rounded-xl
+              bg-gradient-to-r
+              from-cyan-400
+              to-white
+              text-black
+              font-bold
+              hover:scale-105
+              transition
+            "
+          >
+            ⚙ Admin
           </Link>
 
 
@@ -136,14 +158,11 @@ export default function Navbar() {
         {/* Mobile Button */}
 
         <button
-
           onClick={() => setOpen(!open)}
-
           className="
             md:hidden
             text-2xl
           "
-
         >
           ☰
         </button>
@@ -186,8 +205,14 @@ export default function Navbar() {
           </Link>
 
 
+
+          <Link href="/login">
+            🔐 Login
+          </Link>
+
+
           <Link href="/admin">
-            Admin
+            ⚙ Admin
           </Link>
 
 
