@@ -1,53 +1,108 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+
 
 export default function CreatePack() {
 
+
   const [name, setName] = useState("");
-  const [creator, setCreator] = useState("");
   const [price, setPrice] = useState("");
   const [image, setImage] = useState("");
   const [download, setDownload] = useState("");
+  const [creator, setCreator] = useState("");
+
+
+
+  useEffect(() => {
+
+    const username =
+      localStorage.getItem("username");
+
+
+    if (username) {
+
+      setCreator(username);
+
+    } else {
+
+      setCreator("Unbekannt");
+
+    }
+
+  }, []);
+
+
 
 
 
   function createPack() {
 
+
     const pack = {
+
       id: Date.now(),
+
       name,
+
       creator,
+
       price,
+
       image,
+
       download,
+
     };
 
 
+
+
     const old =
+
       JSON.parse(
+
         localStorage.getItem("packs") || "[]"
+
       );
 
 
+
+
     localStorage.setItem(
+
       "packs",
+
       JSON.stringify([
+
         ...old,
+
         pack
+
       ])
+
     );
+
+
 
 
     alert("✅ Texture Pack erstellt!");
 
+
+
     setName("");
-    setCreator("");
+
     setPrice("");
+
     setImage("");
+
     setDownload("");
 
+
+
   }
+
+
 
 
 
@@ -61,10 +116,12 @@ export default function CreatePack() {
       px-6
     ">
 
+
       <div className="
         max-w-3xl
         mx-auto
       ">
+
 
         <h1 className="
           text-5xl
@@ -75,78 +132,123 @@ export default function CreatePack() {
         </h1>
 
 
+
+
         <div className="
           space-y-5
         ">
 
 
+
           <input
+
             placeholder="Name"
+
             value={name}
+
             onChange={(e)=>setName(e.target.value)}
+
             className="
               w-full
               p-4
               rounded-xl
               bg-white/10
             "
+
           />
 
 
-          <input
-            placeholder="Creator"
-            value={creator}
-            onChange={(e)=>setCreator(e.target.value)}
-            className="
-              w-full
-              p-4
-              rounded-xl
-              bg-white/10
-            "
-          />
 
 
+
+          <div className="
+            w-full
+            p-4
+            rounded-xl
+            bg-white/5
+            border
+            border-white/10
+            text-gray-400
+          ">
+
+            Creator:
+            <span className="text-white ml-2">
+              {creator}
+            </span>
+
+          </div>
+
+
+
+
+
           <input
+
             placeholder="Preis (€)"
+
             value={price}
+
             onChange={(e)=>setPrice(e.target.value)}
+
             className="
               w-full
               p-4
               rounded-xl
               bg-white/10
             "
+
           />
 
 
+
+
+
           <input
+
             placeholder="Bild URL"
+
             value={image}
+
             onChange={(e)=>setImage(e.target.value)}
+
             className="
               w-full
               p-4
               rounded-xl
               bg-white/10
             "
+
           />
+
+
+
 
 
           <input
+
             placeholder="Download URL"
+
             value={download}
+
             onChange={(e)=>setDownload(e.target.value)}
+
             className="
               w-full
               p-4
               rounded-xl
               bg-white/10
             "
+
           />
+
+
+
 
 
           <button
+
             onClick={createPack}
+
             className="
               w-full
               p-4
@@ -158,19 +260,26 @@ export default function CreatePack() {
               font-black
               text-xl
             "
+
           >
+
             Erstellen
+
           </button>
+
+
 
 
         </div>
 
 
+
       </div>
+
+
 
     </main>
 
   );
 
 }
-
