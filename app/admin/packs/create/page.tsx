@@ -14,6 +14,41 @@ export default function CreatePack() {
 
 
 
+  function handleFile(
+    e: React.ChangeEvent<HTMLInputElement>,
+    type: "image" | "download"
+  ) {
+
+    const file = e.target.files?.[0];
+
+    if (!file) return;
+
+
+    const reader = new FileReader();
+
+
+    reader.onload = () => {
+
+      if (type === "image") {
+
+        setImage(reader.result as string);
+
+      } else {
+
+        setDownload(reader.result as string);
+
+      }
+
+    };
+
+
+    reader.readAsDataURL(file);
+
+  }
+
+
+
+
 
   function createPack() {
 
@@ -36,32 +71,19 @@ export default function CreatePack() {
 
 
 
-
-    const old =
-
-      JSON.parse(
-
-        localStorage.getItem("packs") || "[]"
-
-      );
-
+    const old = JSON.parse(
+      localStorage.getItem("packs") || "[]"
+    );
 
 
 
     localStorage.setItem(
-
       "packs",
-
       JSON.stringify([
-
         ...old,
-
         pack
-
       ])
-
     );
-
 
 
 
@@ -70,16 +92,10 @@ export default function CreatePack() {
 
 
     setName("");
-
     setCreator("");
-
     setPrice("");
-
     setImage("");
-
     setDownload("");
-
-
 
   }
 
@@ -115,21 +131,14 @@ export default function CreatePack() {
 
 
 
-        <div className="
-          space-y-5
-        ">
-
+        <div className="space-y-5">
 
 
 
           <input
-
             placeholder="Name"
-
             value={name}
-
             onChange={(e)=>setName(e.target.value)}
-
             className="
               w-full
               p-4
@@ -138,7 +147,6 @@ export default function CreatePack() {
               border
               border-white/20
             "
-
           />
 
 
@@ -146,13 +154,9 @@ export default function CreatePack() {
 
 
           <input
-
             placeholder="Creator"
-
             value={creator}
-
             onChange={(e)=>setCreator(e.target.value)}
-
             className="
               w-full
               p-4
@@ -161,7 +165,6 @@ export default function CreatePack() {
               border
               border-white/20
             "
-
           />
 
 
@@ -169,13 +172,9 @@ export default function CreatePack() {
 
 
           <input
-
             placeholder="Preis (€)"
-
             value={price}
-
             onChange={(e)=>setPrice(e.target.value)}
-
             className="
               w-full
               p-4
@@ -184,54 +183,86 @@ export default function CreatePack() {
               border
               border-white/20
             "
-
           />
 
 
 
 
 
-          <input
+          <div className="
+            bg-white/10
+            border
+            border-white/20
+            rounded-xl
+            p-4
+          ">
 
-            placeholder="Bild URL"
-
-            value={image}
-
-            onChange={(e)=>setImage(e.target.value)}
-
-            className="
-              w-full
-              p-4
-              rounded-xl
-              bg-white/10
-              border
-              border-white/20
-            "
-
-          />
+            <p className="mb-3 text-gray-400">
+              🖼️ Bild auswählen
+            </p>
 
 
+            <input
+              type="file"
+              accept="image/*"
+              onChange={(e)=>handleFile(e,"image")}
+              className="w-full"
+            />
+
+
+            {image && (
+
+              <img
+                src={image}
+                className="
+                  mt-4
+                  h-32
+                  rounded-xl
+                "
+              />
+
+            )}
+
+          </div>
 
 
 
-          <input
 
-            placeholder="Download URL"
 
-            value={download}
+          <div className="
+            bg-white/10
+            border
+            border-white/20
+            rounded-xl
+            p-4
+          ">
 
-            onChange={(e)=>setDownload(e.target.value)}
+            <p className="mb-3 text-gray-400">
+              📦 Texture Pack ZIP auswählen
+            </p>
 
-            className="
-              w-full
-              p-4
-              rounded-xl
-              bg-white/10
-              border
-              border-white/20
-            "
 
-          />
+            <input
+              type="file"
+              accept=".zip"
+              onChange={(e)=>handleFile(e,"download")}
+              className="w-full"
+            />
+
+
+            {download && (
+
+              <p className="
+                mt-3
+                text-green-400
+              ">
+                ✅ Datei ausgewählt
+              </p>
+
+            )}
+
+          </div>
+
 
 
 
@@ -254,7 +285,6 @@ export default function CreatePack() {
             "
 
           >
-
             Erstellen
 
           </button>
