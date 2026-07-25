@@ -1,28 +1,7 @@
-"use client";
-
 import Link from "next/link";
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
 
 
 export default function Home() {
-
-  const router = useRouter();
-
-
-  useEffect(() => {
-
-    const loggedIn = localStorage.getItem("isAdmin");
-
-
-    if (loggedIn !== "true") {
-
-      router.replace("/login");
-
-    }
-
-  }, [router]);
-
 
 
   return (
@@ -62,6 +41,7 @@ export default function Home() {
 
 
 
+
       <section className="
         relative
         z-10
@@ -69,6 +49,7 @@ export default function Home() {
         px-6
         text-center
       ">
+
 
 
         <div className="
@@ -84,6 +65,8 @@ export default function Home() {
         ">
           ◈ Premium Minecraft Marketplace
         </div>
+
+
 
 
 
@@ -104,6 +87,8 @@ export default function Home() {
 
 
 
+
+
         <p className="
           mt-8
           max-w-3xl
@@ -118,6 +103,8 @@ export default function Home() {
 
 
 
+
+
         <div className="
           mt-10
           flex
@@ -125,6 +112,7 @@ export default function Home() {
           gap-5
           flex-wrap
         ">
+
 
 
           <Link href="/marketplace">
@@ -148,6 +136,8 @@ export default function Home() {
 
 
 
+
+
           <Link href="/cart">
 
             <button className="
@@ -167,10 +157,14 @@ export default function Home() {
           </Link>
 
 
+
         </div>
 
 
       </section>
+
+
+
 
 
 
@@ -185,6 +179,7 @@ export default function Home() {
         md:grid-cols-3
         gap-8
       ">
+
 
 
       {[
@@ -208,6 +203,7 @@ export default function Home() {
 
       ].map((item)=>(
 
+
         <div
           key={item[1]}
           className="
@@ -222,6 +218,8 @@ export default function Home() {
           "
         >
 
+
+
           <img
             src={item[0]}
             alt={item[1]}
@@ -233,6 +231,8 @@ export default function Home() {
           />
 
 
+
+
           <h2 className="
             mt-5
             text-2xl
@@ -240,6 +240,8 @@ export default function Home() {
           ">
             {item[1]}
           </h2>
+
+
 
 
           <p className="
@@ -250,15 +252,21 @@ export default function Home() {
           </p>
 
 
+
+
         </div>
 
+
       ))}
+
 
 
       </section>
 
 
+
     </main>
 
   );
+
 }
