@@ -4,6 +4,31 @@ import Link from "next/link";
 export default function Home() {
 
 
+  const features = [
+    [
+      "https://i.imgur.com/4NQqsoD.png",
+      "100% Trusted Marketplace",
+      "Ein sicherer Marketplace mit geprüften Packs.",
+      "🔒"
+    ],
+
+    [
+      "https://i.imgur.com/hvx529E.png",
+      "HT1 - HT4 Packs",
+      "PvP Texture Packs für Competitive Minecraft.",
+      "⚔️"
+    ],
+
+    [
+      "https://i.imgur.com/pjWi8vZ.png",
+      "User",
+      "Genutzt von Minecraft Communities.",
+      "🌎"
+    ]
+  ];
+
+
+
   return (
 
     <main className="
@@ -15,55 +40,65 @@ export default function Home() {
     ">
 
 
+      {/* Background */}
+
       <div className="
         absolute
-        top-[-200px]
+        -top-96
         left-1/2
         -translate-x-1/2
-        w-[900px]
-        h-[900px]
-        bg-white/10
-        blur-[200px]
+        w-[1200px]
+        h-[1200px]
+        bg-cyan-400/20
+        blur-[250px]
         rounded-full
       "/>
+
 
 
       <div className="
         absolute
-        right-0
-        top-0
-        w-[500px]
-        h-[500px]
-        bg-cyan-400/20
-        blur-[180px]
+        right-[-300px]
+        top-20
+        w-[700px]
+        h-[700px]
+        bg-purple-500/20
+        blur-[250px]
         rounded-full
       "/>
 
 
+
+
+      {/* HERO */}
 
 
       <section className="
         relative
         z-10
-        pt-44
+        pt-48
         px-6
         text-center
       ">
 
 
-
         <div className="
-          inline-block
-          px-5
-          py-2
+          inline-flex
+          items-center
+          gap-2
+          px-6
+          py-3
           rounded-full
           bg-white/10
           border
           border-white/20
-          backdrop-blur-xl
+          backdrop-blur-2xl
           text-gray-300
+          shadow-xl
         ">
-          ◈ Premium Minecraft Marketplace
+
+          ✦ Premium Minecraft Marketplace
+
         </div>
 
 
@@ -71,10 +106,11 @@ export default function Home() {
 
 
         <h1 className="
-          mt-8
-          text-6xl
-          md:text-8xl
+          mt-10
+          text-7xl
+          md:text-[120px]
           font-black
+          tracking-tight
           bg-gradient-to-r
           from-white
           via-gray-300
@@ -82,7 +118,9 @@ export default function Home() {
           bg-clip-text
           text-transparent
         ">
+
           Lunar Textures
+
         </h1>
 
 
@@ -91,14 +129,16 @@ export default function Home() {
 
         <p className="
           mt-8
-          max-w-3xl
+          max-w-2xl
           mx-auto
           text-xl
           text-gray-400
         ">
+
           Der Premium Minecraft Texture Pack Marketplace.
           Entdecke hochwertige PvP Packs,
           schnelle Lieferung und einen sicheren Checkout.
+
         </p>
 
 
@@ -106,7 +146,7 @@ export default function Home() {
 
 
         <div className="
-          mt-10
+          mt-12
           flex
           justify-center
           gap-5
@@ -118,18 +158,22 @@ export default function Home() {
           <Link href="/marketplace">
 
             <button className="
-              px-10
-              py-4
+              px-12
+              py-5
               rounded-2xl
               bg-gradient-to-r
-              from-white
-              to-cyan-400
+              from-cyan-400
+              to-purple-500
               text-black
               font-black
-              hover:scale-105
+              text-lg
+              shadow-[0_0_60px_rgba(34,211,238,0.35)]
+              hover:scale-110
               transition
             ">
+
               💎 Marketplace
+
             </button>
 
           </Link>
@@ -141,24 +185,28 @@ export default function Home() {
           <Link href="/cart">
 
             <button className="
-              px-10
-              py-4
+              px-12
+              py-5
               rounded-2xl
               bg-white/10
               border
               border-white/20
+              backdrop-blur-xl
               font-bold
+              text-lg
               hover:bg-white/20
               transition
             ">
+
               🛒 Warenkorb
+
             </button>
 
           </Link>
 
 
-
         </div>
+
 
 
       </section>
@@ -168,89 +216,184 @@ export default function Home() {
 
 
 
+
+      {/* FEATURES */}
+
+
+
       <section className="
         relative
         z-10
-        max-w-6xl
+        max-w-7xl
         mx-auto
-        mt-32
+        mt-40
         px-6
         grid
         md:grid-cols-3
-        gap-8
+        gap-10
       ">
 
 
 
-      {[
-        [
-          "https://i.imgur.com/4NQqsoD.png",
-          "100% Trusted Marketplace",
-          "Ein sicherer Marketplace mit geprüften Packs."
-        ],
-
-        [
-          "https://i.imgur.com/hvx529E.png",
-          "HT1 - HT4 Packs",
-          "PvP Texture Packs für Competitive Minecraft."
-        ],
-
-        [
-          "https://i.imgur.com/pjWi8vZ.png",
-          "User",
-          "Genutzt von Minecraft Communities."
-        ]
-
-      ].map((item)=>(
+      {features.map((item)=>(
 
 
         <div
           key={item[1]}
           className="
-            bg-white/5
-            border
-            border-white/20
-            rounded-3xl
-            p-8
-            backdrop-blur-xl
-            hover:border-cyan-400
-            transition
+            group
+            relative
+            rounded-[40px]
+            p-[1px]
+            bg-gradient-to-br
+            from-white/30
+            via-white/5
+            to-cyan-400/50
+            hover:-translate-y-4
+            transition-all
+            duration-500
           "
         >
 
 
 
-          <img
-            src={item[0]}
-            alt={item[1]}
-            className="
-              h-32
+          <div className="
+            relative
+            h-full
+            rounded-[40px]
+            bg-black/70
+            backdrop-blur-3xl
+            p-10
+            overflow-hidden
+          ">
+
+
+
+          <div className="
+            absolute
+            -right-20
+            -top-20
+            w-60
+            h-60
+            bg-cyan-400/20
+            blur-[80px]
+            rounded-full
+            group-hover:bg-cyan-400/40
+            transition
+          "/>
+
+
+
+
+          <div className="
+            relative
+            z-10
+          ">
+
+
+            <div className="
+              flex
+              justify-between
+              items-center
+            ">
+
+
+              <span className="
+                text-4xl
+              ">
+                {item[3]}
+              </span>
+
+
+
+              <span className="
+                px-4
+                py-1
+                rounded-full
+                bg-white/10
+                border
+                border-white/20
+                text-xs
+                text-gray-300
+              ">
+                PREMIUM
+              </span>
+
+
+            </div>
+
+
+
+
+
+            <div className="
+              mt-10
               w-32
-              object-contain
-            "
-          />
+              h-32
+              rounded-[35px]
+              bg-white/10
+              border
+              border-white/20
+              flex
+              items-center
+              justify-center
+              group-hover:scale-110
+              transition
+            ">
+
+
+              <img
+                src={item[0]}
+                alt={item[1]}
+                className="
+                  w-24
+                  h-24
+                  object-contain
+                "
+              />
+
+
+            </div>
 
 
 
 
-          <h2 className="
-            mt-5
-            text-2xl
-            font-bold
-          ">
-            {item[1]}
-          </h2>
+
+            <h2 className="
+              mt-8
+              text-3xl
+              font-black
+              bg-gradient-to-r
+              from-white
+              to-cyan-400
+              bg-clip-text
+              text-transparent
+            ">
+
+              {item[1]}
+
+            </h2>
 
 
 
 
-          <p className="
-            mt-3
-            text-gray-400
-          ">
-            {item[2]}
-          </p>
 
+            <p className="
+              mt-4
+              text-gray-400
+              text-lg
+            ">
+
+              {item[2]}
+
+            </p>
+
+
+
+          </div>
+
+
+          </div>
 
 
 

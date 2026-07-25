@@ -1,37 +1,16 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 
 export default function CreatePack() {
 
 
   const [name, setName] = useState("");
+  const [creator, setCreator] = useState("");
   const [price, setPrice] = useState("");
   const [image, setImage] = useState("");
   const [download, setDownload] = useState("");
-  const [creator, setCreator] = useState("");
-
-
-
-  useEffect(() => {
-
-    const username =
-      localStorage.getItem("username");
-
-
-    if (username) {
-
-      setCreator(username);
-
-    } else {
-
-      setCreator("Unbekannt");
-
-    }
-
-  }, []);
-
 
 
 
@@ -92,6 +71,8 @@ export default function CreatePack() {
 
     setName("");
 
+    setCreator("");
+
     setPrice("");
 
     setImage("");
@@ -140,6 +121,7 @@ export default function CreatePack() {
 
 
 
+
           <input
 
             placeholder="Name"
@@ -153,6 +135,8 @@ export default function CreatePack() {
               p-4
               rounded-xl
               bg-white/10
+              border
+              border-white/20
             "
 
           />
@@ -161,22 +145,24 @@ export default function CreatePack() {
 
 
 
-          <div className="
-            w-full
-            p-4
-            rounded-xl
-            bg-white/5
-            border
-            border-white/10
-            text-gray-400
-          ">
+          <input
 
-            Creator:
-            <span className="text-white ml-2">
-              {creator}
-            </span>
+            placeholder="Creator"
 
-          </div>
+            value={creator}
+
+            onChange={(e)=>setCreator(e.target.value)}
+
+            className="
+              w-full
+              p-4
+              rounded-xl
+              bg-white/10
+              border
+              border-white/20
+            "
+
+          />
 
 
 
@@ -195,6 +181,8 @@ export default function CreatePack() {
               p-4
               rounded-xl
               bg-white/10
+              border
+              border-white/20
             "
 
           />
@@ -216,6 +204,8 @@ export default function CreatePack() {
               p-4
               rounded-xl
               bg-white/10
+              border
+              border-white/20
             "
 
           />
@@ -237,6 +227,8 @@ export default function CreatePack() {
               p-4
               rounded-xl
               bg-white/10
+              border
+              border-white/20
             "
 
           />
