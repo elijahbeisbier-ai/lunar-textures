@@ -5,21 +5,49 @@ import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { usePacks } from "@/context/PackContext";
 
+
 export default function AdminDashboard() {
 
+
   const router = useRouter();
+
   const { packs } = usePacks();
+
 
 
   useEffect(() => {
 
-    const isAdmin = localStorage.getItem("isAdmin");
 
-    if (isAdmin !== "true") {
-      router.replace("/");
+    const admin =
+      localStorage.getItem("admin");
+
+
+
+    if (admin !== "true") {
+
+      router.replace("/admin/login");
+
     }
 
+
   }, [router]);
+
+
+
+
+
+  function logout() {
+
+
+    localStorage.removeItem("admin");
+
+    router.replace("/admin/login");
+
+
+  }
+
+
+
 
 
 
@@ -53,6 +81,8 @@ export default function AdminDashboard() {
 
 
 
+
+
   const buttons = [
 
     {
@@ -76,6 +106,9 @@ export default function AdminDashboard() {
 
 
 
+
+
+
   return (
 
     <main className="
@@ -87,6 +120,7 @@ export default function AdminDashboard() {
       relative
       overflow-hidden
     ">
+
 
 
       <div className="
@@ -102,6 +136,10 @@ export default function AdminDashboard() {
       " />
 
 
+
+
+
+
       <div className="
         relative
         z-10
@@ -110,33 +148,83 @@ export default function AdminDashboard() {
       ">
 
 
-        <h1 className="
-          text-6xl
-          font-black
-          bg-gradient-to-r
-          from-white
-          via-gray-300
-          to-cyan-400
-          bg-clip-text
-          text-transparent
-        ">
-          ◈ Quartz Admin Panel
-        </h1>
 
 
-        <p className="
-          mt-4
-          text-gray-400
-          text-lg
+        <div className="
+          flex
+          justify-between
+          items-center
         ">
-          Verwalte deinen Premium Texture Pack Marketplace.
-        </p>
+
+
+
+          <div>
+
+            <h1 className="
+              text-6xl
+              font-black
+              bg-gradient-to-r
+              from-white
+              via-gray-300
+              to-cyan-400
+              bg-clip-text
+              text-transparent
+            ">
+              ◈ Quartz Admin Panel
+            </h1>
+
+
+            <p className="
+              mt-4
+              text-gray-400
+              text-lg
+            ">
+              Verwalte deinen Premium Texture Pack Marketplace.
+            </p>
+
+
+          </div>
+
+
+
+
+          <button
+
+            onClick={logout}
+
+            className="
+              px-6
+              py-3
+              rounded-xl
+              bg-red-500/20
+              border
+              border-red-500/40
+              text-red-400
+              font-bold
+            "
+
+          >
+
+            🚪 Logout
+
+          </button>
+
+
+
+        </div>
+
+
+
+
+
+
         <div className="
           mt-12
           grid
-          md:grid-cols-4
+          md:grid-4
           gap-6
         ">
+
 
           {stats.map((stat)=>(
 
@@ -180,7 +268,11 @@ export default function AdminDashboard() {
 
           ))}
 
+
         </div>
+
+
+
 
 
 
@@ -190,6 +282,7 @@ export default function AdminDashboard() {
           md:grid-cols-2
           gap-8
         ">
+
 
 
 
@@ -261,11 +354,14 @@ export default function AdminDashboard() {
           ))}
 
 
+
         </div>
 
 
 
+
       </div>
+
 
 
     </main>
