@@ -1,7 +1,32 @@
+"use client";
+
 import Link from "next/link";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
+
 
 export default function Home() {
+
+  const router = useRouter();
+
+
+  useEffect(() => {
+
+    const loggedIn = localStorage.getItem("isAdmin");
+
+
+    if (loggedIn !== "true") {
+
+      router.replace("/login");
+
+    }
+
+  }, [router]);
+
+
+
   return (
+
     <main className="
       relative
       min-h-screen
@@ -10,7 +35,6 @@ export default function Home() {
       overflow-hidden
     ">
 
-      {/* Quartz Glow */}
 
       <div className="
         absolute
@@ -37,8 +61,6 @@ export default function Home() {
       "/>
 
 
-
-      {/* Hero */}
 
       <section className="
         relative
@@ -90,7 +112,7 @@ export default function Home() {
           text-gray-400
         ">
           Der Premium Minecraft Texture Pack Marketplace.
-          Entdecke hochwertige HT1 - HT4 PvP Packs,
+          Entdecke hochwertige PvP Packs,
           schnelle Lieferung und einen sicheren Checkout.
         </p>
 
@@ -152,10 +174,6 @@ export default function Home() {
 
 
 
-
-
-      {/* Features */}
-
       <section className="
         relative
         z-10
@@ -173,23 +191,22 @@ export default function Home() {
         [
           "https://i.imgur.com/4NQqsoD.png",
           "100% Trusted Marketplace",
-          "Ein sicherer Marketplace mit geprüften Packs und zuverlässigem Service."
+          "Ein sicherer Marketplace mit geprüften Packs."
         ],
 
         [
           "https://i.imgur.com/hvx529E.png",
           "HT1 - HT4 Packs",
-          "Hochwertige PvP Texture Packs für Competitive Minecraft Spieler."
+          "PvP Texture Packs für Competitive Minecraft."
         ],
 
         [
           "https://i.imgur.com/pjWi8vZ.png",
           "User",
-          "Genutzt von Spielern aus HugoSMP, WindSMP, DonutSMP und vielen weiteren Communities."
+          "Genutzt von Minecraft Communities."
         ]
 
       ].map((item)=>(
-
 
         <div
           key={item[1]}
@@ -201,35 +218,19 @@ export default function Home() {
             p-8
             backdrop-blur-xl
             hover:border-cyan-400
-            hover:scale-105
             transition
           "
         >
 
-
-
-          <div className="
-            h-36
-            flex
-            items-center
-          ">
-
-
-            <img
-              src={item[0]}
-              alt={item[1]}
-              className="
-                h-32
-                w-32
-                object-contain
-              "
-            />
-
-
-          </div>
-
-
-
+          <img
+            src={item[0]}
+            alt={item[1]}
+            className="
+              h-32
+              w-32
+              object-contain
+            "
+          />
 
 
           <h2 className="
@@ -241,8 +242,6 @@ export default function Home() {
           </h2>
 
 
-
-
           <p className="
             mt-3
             text-gray-400
@@ -251,9 +250,7 @@ export default function Home() {
           </p>
 
 
-
         </div>
-
 
       ))}
 
@@ -261,89 +258,7 @@ export default function Home() {
       </section>
 
 
-
-
-
-
-
-      {/* Kategorien */}
-
-      <section className="
-        relative
-        z-10
-        max-w-6xl
-        mx-auto
-        mt-32
-        px-6
-        pb-20
-      ">
-
-
-        <h2 className="
-          text-4xl
-          font-black
-          text-center
-        ">
-          Kategorien
-        </h2>
-
-
-
-
-        <div className="
-          mt-10
-          grid
-          md:grid-cols-4
-          gap-5
-        ">
-
-
-        {[
-          "⚔ HT1 PvP",
-          "🏆 HT2 PvP",
-          "🥇 HT3 PvP",
-          "🥈 HT4 PvP",
-          "✨ Premium Qualität",
-          "🚀 FPS Boost",
-          "💎 16x - 256x",
-          "🔥 Competitive"
-        ].map((item)=>(
-
-
-          <Link
-            href="/marketplace"
-            key={item}
-          >
-
-            <div className="
-              bg-white/5
-              border
-              border-white/20
-              rounded-2xl
-              p-6
-              text-center
-              backdrop-blur-xl
-              hover:border-cyan-400
-              hover:scale-105
-              transition
-            ">
-
-              {item}
-
-            </div>
-
-          </Link>
-
-
-        ))}
-
-
-        </div>
-
-
-      </section>
-
-
     </main>
+
   );
 }
