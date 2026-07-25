@@ -6,37 +6,30 @@ import { useRouter } from "next/navigation";
 
 export default function AdminLogin() {
 
-
   const router = useRouter();
 
-  const [email,setEmail] = useState("");
-  const [password,setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
 
+  function login() {
 
-  function login(){
+    if (
+      email === "Elijah.noderer@gmail.com" &&
+      password === "Elijah61170"
+    ) {
 
+      localStorage.setItem("admin", "true");
 
-    if(
-      email === "elijah.noderer@gmail.com" &&
-      password === "Admin7777"
-    ){
-
-      localStorage.setItem(
-        "admin",
-        "true"
-      );
-
+      alert("✅ Admin Login erfolgreich!");
 
       router.push("/admin");
 
-
     } else {
 
-      alert("❌ Falsche Admin Daten");
+      alert("❌ Falsche Email oder Passwort!");
 
     }
-
 
   }
 
@@ -63,6 +56,7 @@ export default function AdminLogin() {
         border-white/20
         rounded-3xl
         p-8
+        backdrop-blur-xl
       ">
 
 
@@ -74,34 +68,57 @@ export default function AdminLogin() {
         </h1>
 
 
+        <p className="
+          mt-3
+          text-gray-400
+        ">
+          Nur für Marketplace Administratoren.
+        </p>
+
+
 
         <input
-          placeholder="Admin Email"
+
+          placeholder="Email"
+
           value={email}
+
           onChange={(e)=>setEmail(e.target.value)}
+
           className="
             mt-8
             w-full
             p-4
             rounded-xl
             bg-white/10
+            border
+            border-white/20
           "
+
         />
 
 
 
         <input
+
           placeholder="Passwort"
+
           type="password"
+
           value={password}
+
           onChange={(e)=>setPassword(e.target.value)}
+
           className="
             mt-4
             w-full
             p-4
             rounded-xl
             bg-white/10
+            border
+            border-white/20
           "
+
         />
 
 
@@ -113,9 +130,11 @@ export default function AdminLogin() {
           className="
             mt-6
             w-full
-            p-4
+            py-4
             rounded-xl
-            bg-cyan-400
+            bg-gradient-to-r
+            from-cyan-400
+            to-purple-500
             text-black
             font-black
           "

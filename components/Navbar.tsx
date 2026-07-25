@@ -110,22 +110,6 @@ export default function Navbar() {
 
 
 
-          <Link
-            href="/login"
-            className="
-              px-5
-              py-2
-              rounded-xl
-              bg-white/10
-              border
-              border-white/20
-              hover:border-cyan-400
-              transition
-            "
-          >
-            🔐 Login
-          </Link>
-
 
 
 
