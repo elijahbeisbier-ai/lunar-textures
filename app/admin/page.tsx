@@ -1,13 +1,25 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 import { usePacks } from "@/context/PackContext";
-
 
 export default function AdminDashboard() {
 
-
+  const router = useRouter();
   const { packs } = usePacks();
+
+
+  useEffect(() => {
+
+    const isAdmin = localStorage.getItem("isAdmin");
+
+    if (isAdmin !== "true") {
+      router.replace("/");
+    }
+
+  }, [router]);
 
 
 
@@ -41,10 +53,7 @@ export default function AdminDashboard() {
 
 
 
-
-
   const buttons = [
-
 
     {
       title: "Texture Packs verwalten",
@@ -55,7 +64,6 @@ export default function AdminDashboard() {
     },
 
 
-
     {
       title:"Create Texture Pack",
       description:
@@ -64,12 +72,7 @@ export default function AdminDashboard() {
       link:"/admin/packs/create"
     }
 
-
-
   ];
-
-
-
 
 
 
@@ -86,9 +89,6 @@ export default function AdminDashboard() {
     ">
 
 
-
-      {/* Quartz Glow */}
-
       <div className="
         absolute
         top-0
@@ -102,18 +102,12 @@ export default function AdminDashboard() {
       " />
 
 
-
-
-
       <div className="
         relative
         z-10
         max-w-7xl
         mx-auto
       ">
-
-
-
 
 
         <h1 className="
@@ -130,7 +124,6 @@ export default function AdminDashboard() {
         </h1>
 
 
-
         <p className="
           mt-4
           text-gray-400
@@ -138,16 +131,6 @@ export default function AdminDashboard() {
         ">
           Verwalte deinen Premium Texture Pack Marketplace.
         </p>
-
-
-
-
-
-
-
-        {/* Stats */}
-
-
         <div className="
           mt-12
           grid
@@ -155,73 +138,49 @@ export default function AdminDashboard() {
           gap-6
         ">
 
+          {stats.map((stat)=>(
 
-        {stats.map((stat)=>(
+            <div
+              key={stat.title}
+              className="
+                bg-white/5
+                border
+                border-white/20
+                rounded-3xl
+                p-7
+                backdrop-blur-xl
+                hover:border-cyan-400
+                transition
+              "
+            >
+
+              <div className="text-5xl">
+                {stat.icon}
+              </div>
 
 
-          <div
-
-            key={stat.title}
-
-            className="
-              bg-white/5
-              border
-              border-white/20
-              rounded-3xl
-              p-7
-              backdrop-blur-xl
-              hover:border-cyan-400
-              transition
-            "
-
-          >
+              <p className="
+                mt-5
+                text-gray-400
+              ">
+                {stat.title}
+              </p>
 
 
-            <div className="
-              text-5xl
-            ">
-              {stat.icon}
+              <h2 className="
+                mt-2
+                text-3xl
+                font-black
+              ">
+                {stat.value}
+              </h2>
+
+
             </div>
 
-
-
-            <p className="
-              mt-5
-              text-gray-400
-            ">
-              {stat.title}
-            </p>
-
-
-
-            <h2 className="
-              mt-2
-              text-3xl
-              font-black
-            ">
-              {stat.value}
-            </h2>
-
-
-
-          </div>
-
-
-
-        ))}
-
+          ))}
 
         </div>
-
-
-
-
-
-
-
-
-
-        {/* Buttons */}
 
 
 
@@ -234,92 +193,82 @@ export default function AdminDashboard() {
 
 
 
-        {buttons.map((button)=>(
+          {buttons.map((button)=>(
+
+
+            <Link
+
+              href={button.link}
+
+              key={button.title}
+
+              className="
+                group
+                bg-white/5
+                border
+                border-white/20
+                rounded-3xl
+                p-10
+                backdrop-blur-xl
+                hover:border-cyan-400
+                hover:scale-[1.03]
+                transition
+              "
+
+            >
+
+
+              <div className="
+                text-6xl
+              ">
+                {button.icon}
+              </div>
 
 
 
-          <Link
-
-            href={button.link}
-
-            key={button.title}
-
-            className="
-              group
-              bg-white/5
-              border
-              border-white/20
-              rounded-3xl
-              p-10
-              backdrop-blur-xl
-              hover:border-cyan-400
-              hover:scale-[1.03]
-              transition
-            "
-
-          >
+              <h2 className="
+                mt-6
+                text-3xl
+                font-black
+              ">
+                {button.title}
+              </h2>
 
 
 
-            <div className="
-              text-6xl
-            ">
-              {button.icon}
-            </div>
+              <p className="
+                mt-3
+                text-gray-400
+              ">
+                {button.description}
+              </p>
 
 
 
-
-            <h2 className="
-              mt-6
-              text-3xl
-              font-black
-            ">
-              {button.title}
-            </h2>
-
-
-
-            <p className="
-              mt-3
-              text-gray-400
-            ">
-              {button.description}
-            </p>
+              <div className="
+                mt-8
+                text-cyan-400
+                font-bold
+              ">
+                Öffnen →
+              </div>
 
 
 
-
-            <div className="
-              mt-8
-              text-cyan-400
-              font-bold
-            ">
-              Öffnen →
-            </div>
+            </Link>
 
 
-
-
-          </Link>
-
-
-
-        ))}
-
+          ))}
 
 
         </div>
 
 
 
-
       </div>
 
 
-
     </main>
-
 
   );
 

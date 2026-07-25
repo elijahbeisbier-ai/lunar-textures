@@ -275,7 +275,7 @@ export default function ManagePacks() {
                   mt-2
                 ">
 
-                  Creator: {pack.creator}
+                  Creator: {pack.profile?.username || pack.creator || "Unbekannt"}
 
                 </p>
 
