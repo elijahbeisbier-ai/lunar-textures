@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
 
@@ -8,10 +8,20 @@ export default function ProfilePage() {
 
   const router = useRouter();
 
+  const [username, setUsername] = useState("");
+  const [loaded, setLoaded] = useState(false);
 
-  const [username, setUsername] = useState(
-    localStorage.getItem("username") || ""
-  );
+
+  useEffect(() => {
+
+    const savedUsername =
+      localStorage.getItem("username") || "";
+
+    setUsername(savedUsername);
+
+    setLoaded(true);
+
+  }, []);
 
 
 
@@ -31,6 +41,12 @@ export default function ProfilePage() {
 
 
 
+  if (!loaded) {
+    return null;
+  }
+
+
+
   return (
 
     <main className="
@@ -42,7 +58,6 @@ export default function ProfilePage() {
       justify-center
       px-6
     ">
-
 
       <div className="
         max-w-md
@@ -62,7 +77,6 @@ export default function ProfilePage() {
         ">
           👤 Profil
         </h1>
-
 
 
         <p className="
@@ -115,7 +129,6 @@ export default function ProfilePage() {
         >
           Profil speichern
         </button>
-
 
 
       </div>
